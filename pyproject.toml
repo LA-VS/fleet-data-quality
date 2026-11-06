@@ -1,0 +1,45 @@
+[project]
+name = "fleet-dq"
+version = "0.1.0"
+description = "How reliably can an automated pipeline detect and fix the quality defects in a fleet fuel card register?"
+readme = "README.md"
+authors = [
+    { name = "Luke Acland", email = "205208481+LA-VS@users.noreply.github.com" }
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.1.1",
+    "pandera>=0.35.0",
+    "rapidfuzz>=3.14.6",
+    "scikit-learn>=1.9.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.7,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+    "jupyter>=1.1.1",
+    "nbconvert>=7.17.2",
+    "pytest>=9.2.0",
+    "ruff>=0.17.4",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+"notebooks/*" = ["E501", "B007"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
